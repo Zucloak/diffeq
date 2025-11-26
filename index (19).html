@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Differential Equations Final Exam Reviewer</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 5px solid #1abc9c;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .toc {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .toc h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .toc-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+            list-style-type: none;
+        }
+        
+        .toc-list li {
+            margin-bottom: 8px;
+        }
+        
+        .toc-list a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        .toc-list a:hover {
+            color: #2980b9;
+            background-color: #e8f4fc;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            border-left: 5px solid #3498db;
+            padding-left: 15px;
+            margin: 30px 0 20px 0;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: #2980b9;
+            margin: 20px 0 15px 0;
+            font-size: 1.4rem;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .definition {
+            background-color: #e8f8f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #1abc9c;
+        }
+        
+        .formula {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow-x: auto;
+            text-align: center;
+            border: 1px solid #e9ecef;
+        }
+        
+        .example {
+            background-color: #f0f7ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #5dade2;
+        }
+        
+        .calculator-tip {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .key-point {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e8f4fc;
+        }
+        
+        .important {
+            background-color: #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #fdcb6e;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .nav-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+        }
+        
+        .nav-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        @media (max-width: 768px) {
+            .toc-list {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Differential Equations Final Exam Reviewer</h1>
+            <p class="subtitle">Complete Guide with Canon F-789SGA Calculator Tips</p>
+        </header>
+        
+        <div class="toc">
+            <h2>Table of Contents</h2>
+            <ul class="toc-list">
+                <li><a href="#section1">1. Definition, Classification, Order, Degree, and Linearity</a></li>
+                <li><a href="#section2">2. Elimination of Arbitrary Constants</a></li>
+                <li><a href="#section3">3. Family of Curves</a></li>
+                <li><a href="#section4">4. Variable Separable Equations</a></li>
+                <li><a href="#section5">5. Homogeneous Differential Equations</a></li>
+                <li><a href="#section6">6. Exact Differential Equations</a></li>
+                <li><a href="#section7">7. Non-Exact Differential Equations</a></li>
+                <li><a href="#section8">8. First Order Linear Differential Equations</a></li>
+                <li><a href="#section9">9. Bernoulli's Equations</a></li>
+                <li><a href="#section10">10. Orthogonal Trajectories</a></li>
+                <li><a href="#section11">11. Growth and Decay</a></li>
+                <li><a href="#section12">12. Newton's Law of Cooling</a></li>
+                <li><a href="#section13">13. Investment Problems</a></li>
+                <li><a href="#section14">14. Mixture Problems</a></li>
+                <li><a href="#section15">15. Newton's Second Law of Motion</a></li>
+                <li><a href="#section16">16. Simple Circuit Problems</a></li>
+                <li><a href="#section17">17. Variation of Parameters</a></li>
+                <li><a href="#section18">18. Homogeneous Linear DE with Constant Coefficients</a></li>
+                <li><a href="#section19">19. Laplace Transforms</a></li>
+            </ul>
+        </div>
+        
+        <div class="content">
+            <!-- Section 1 -->
+            <div class="section" id="section1">
+                <h2>1. Definition, Classification, Order, Degree, and Linearity of Differential Equations</h2>
+                
+                <div class="definition">
+                    <h3>Definition</h3>
+                    <p>A <span class="key-point">differential equation</span> is an equation that contains one or more derivatives of one or more unknown functions (dependent variables) with respect to one or more independent variables.</p>
+                </div>
+                
+                <h3>Classification by Type</h3>
+                <ul>
+                    <li><span class="key-point">Ordinary Differential Equation (ODE)</span>: Contains only ordinary derivatives</li>
+                    <li><span class="key-point">Partial Differential Equation (PDE)</span>: Contains partial derivatives</li>
+                </ul>
+                
+                <div class="example">
+                    <h3>Examples</h3>
+                    <p><strong>ODE:</strong> \( \frac{dy}{dx} + 2xy = e^{-x^2} \)</p>
+                    <p><strong>PDE:</strong> \( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0 \) (Laplace's Equation)</p>
+                </div>
+                
+                <h3>Order and Degree</h3>
+                <ul>
+                    <li><span class="key-point">Order</span>: The order of the highest derivative in the equation</li>
+                    <li><span class="key-point">Degree</span>: The exponent of the highest ordered derivative when the equation is expressed as a polynomial in derivatives</li>
+                </ul>
+                
+                <table>
+                    <tr>
+                        <th>Equation</th>
+                        <th>Order</th>
+                        <th>Degree</th>
+                    </tr>
+                    <tr>
+                        <td>\( \frac{d^2y}{dx^2} + 3\frac{dy}{dx} + 2y = 0 \)</td>
+                        <td>2</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>\( \left(\frac{d^3y}{dx^3}\right)^2 + \left(\frac{dy}{dx}\right)^4 = 1 \)</td>
+                        <td>3</td>
+                        <td>2</td>
+                    </tr>
+                </table>
+                
+                <h3>Linearity</h3>
+                <p>A differential equation is <span class="key-point">linear</span> if:</p>
+                <ul>
+                    <li>The dependent variable and all its derivatives appear to the first power only</li>
+                    <li>No products of the dependent variable and/or its derivatives appear</li>
+                    <li>No transcendental functions of the dependent variable and/or its derivatives appear</li>
+                </ul>
+                
+                <div class="calculator-tip">
+                    <h3>Canon F-789SGA Calculator Tips</h3>
+                    <ul>
+                        <li>Use <span class="key-point">MODE</span> to switch between calculation modes</li>
+                        <li>For derivatives: Use <span class="key-point">d/dx</span> function</li>
+                        <li>Store values: Use <span class="key-point">STO</span> button</li>
+                        <li>Recall values: Use <span class="key-point">RCL</span> button</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Section 2 -->
+            <div class="section" id="section2">
+                <h2>2. Elimination of Arbitrary Constants</h2>
+                
+                <div class="definition">
+                    <p>The process of finding a differential equation whose general solution is a given family of curves with one or more arbitrary constants.</p>
+                </div>
+                
+                <h3>Procedure</h3>
+                <ol>
+                    <li>Write the equation of the family of curves</li>
+                    <li>Differentiate as many times as the number of arbitrary constants</li>
+                    <li>Eliminate the arbitrary constants from the original equation and its derivatives</li>
+                </ol>
+                
+                <div class="example">
+                    <h3>Example</h3>
+                    <p>Eliminate the arbitrary constant from \( y = ce^{2x} \)</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Differentiate: \( \frac{dy}{dx} = 2ce^{2x} \)</p>
+                    <p>From the original equation: \( c = ye^{-2x} \)</p>
+                    <p>Substitute: \( \frac{dy}{dx} = 2ye^{-2x}e^{2x} = 2y \)</p>
+                    <p>Differential equation: \( \frac{dy}{dx} - 2y = 0 \)</p>
+                </div>
+            </div>
+            
+            <!-- Section 3 -->
+            <div class="section" id="section3">
+                <h2>3. Family of Curves</h2>
+                
+                <div class="definition">
+                    <p>A <span class="key-point">family of curves</span> is a set of curves represented by an equation containing one or more arbitrary constants.</p>
+                </div>
+                
+                <div class="example">
+                    <h3>Example</h3>
+                    <p>Find the differential equation for all circles with radius 1.</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Equation: \( (x-a)^2 + (y-b)^2 = 1 \)</p>
+                    <p>Differentiate twice and eliminate a and b to get the differential equation.</p>
+                </div>
+            </div>
+            
+            <!-- Section 4 -->
+            <div class="section" id="section4">
+                <h2>4. Variable Separable Equations</h2>
+                
+                <div class="definition">
+                    <p>A first-order differential equation is <span class="key-point">separable</span> if it can be written in the form:</p>
+                    <div class="formula">
+                        \[ h(y)dy = g(x)dx \]
+                    </div>
+                </div>
+                
+                <h3>Solution Method</h3>
+                <div class="formula">
+                    \[ \int h(y)dy = \int g(x)dx + C \]
+                </div>
+                
+                <div class="example">
+                    <h3>Example</h3>
+                    <p>Solve \( \frac{dy}{dx} = \frac{x}{y} \)</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>\( ydy = xdx \)</p>
+                    <p>\( \int ydy = \int xdx \)</p>
+                    <p>\( \frac{y^2}{2} = \frac{x^2}{2} + C \)</p>
+                    <p>\( y^2 = x^2 + K \) (where \( K = 2C \))</p>
+                </div>
+                
+                <div class="calculator-tip">
+                    <h3>Canon F-789SGA Calculator Tips</h3>
+                    <ul>
+                        <li>For integration: Use the <span class="key-point">∫</span> function</li>
+                        <li>For definite integrals: Specify limits</li>
+                        <li>Use <span class="key-point">CALC</span> to evaluate at specific points</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Section 5 -->
+            <div class="section" id="section5">
+                <h2>5. Homogeneous Differential Equations</h2>
+                
+                <div class="definition">
+                    <p>A function \( f(x,y) \) is <span class="key-point">homogeneous of degree n</span> if \( f(tx,ty) = t^n f(x,y) \) for all \( t > 0 \).</p>
+                    <p>A differential equation \( M(x,y)dx + N(x,y)dy = 0 \) is homogeneous if both M and N are homogeneous functions of the same degree.</p>
+                </div>
+                
+                <h3>Solution Method</h3>
+                <p>Use substitution \( y = vx \) or \( x = uy \) to transform into a separable equation.</p>
+                
+                <div class="example">
+                    <h3>Example</h3>
+                    <p>Solve \( (x^2 + y^2)dx + 2xydy = 0 \)</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Substitute \( y = vx \), \( dy = vdx + xdv \)</p>
+                    <p>This transforms the equation to a separable form that can be integrated.</p>
+                </div>
+            </div>
+            
+            <!-- Section 6 -->
+            <div class="section" id="section6">
+                <h2>6. Exact Differential Equations</h2>
+                
+                <div class="definition">
+                    <p>The DE \( M(x,y)dx + N(x,y)dy = 0 \) is <span class="key-point">exact</span> if:</p>
+                    <div class="formula">
+                        \[ \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x} \]
+                    </div>
+                    <p>Then there exists a function \( f(x,y) \) such that \( df = Mdx + Ndy \), and the solution is \( f(x,y) = C \).</p>
+                </div>
+                
+                <div class="example">
+                    <h3>Example</h3>
+                    <p>Solve \( (2xy + y^2)dx + (x^2 + 2xy)dy = 0 \)</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Check exactness: \( \frac{\partial M}{\partial y} = 2x + 2y = \frac{\partial N}{\partial x} \)</p>
+                    <p>Find f such that \( \frac{\partial f}{\partial x} = M \) and \( \frac{\partial f}{\partial y} = N \)</p>
+                    <p>Solution: \( x^2y + xy^2 = C \)</p>
+                </div>
+            </div>
+            
+            <!-- Section 7 -->
+            <div class="section" id="section7">
+                <h2>7. Non-Exact Differential Equations</h2>
+                
+                <div class="definition">
+                    <p>If \( M(x,y)dx + N(x,y)dy = 0 \) is not exact, we can sometimes find an <span class="key-point">integrating factor</span> \( \mu(x,y) \) such that:</p>
+                    <div class="formula">
+                        \[ \mu M dx + \mu N dy = 0 \]
+                    </div>
+                    <p>is exact.</p>
+                </div>
+                
+                <h3>Finding Integrating Factors</h3>
+                <ul>
+                    <li>If \( \frac{M_y - N_x}{N} \) is a function of x only, then \( \mu(x) = e^{\int \frac{M_y - N_x}{N} dx} \)</li>
+                    <li>If \( \frac{N_x - M_y}{M} \) is a function of y only, then \( \mu(y) = e^{\int \frac{N_x - M_y}{M} dy} \)</li>
+                </ul>
+            </div>
+            
+            <!-- Section 8 -->
+            <div class="section" id="section8">
+                <h2>8. First Order Linear Differential Equations</h2>
+                
+                <div class="definition">
+                    <p>A first-order linear differential equation has the form:</p>
+                    <div class="formula">
+                        \[ \frac{dy}{dx} + P(x)y = Q(x) \]
+                    </div>
+                </div>
+                
+                <h3>Solution Method</h3>
+                <p>Use integrating factor \( \mu(x) = e^{\int P(x)dx} \)</p>
+                <div class="formula">
+                    \[ y = \frac{1}{\mu(x)} \int \mu(x)Q(x)dx \]
+                </div>
+                
+                <div class="calculator-tip">
+                    <h3>Canon F-789SGA Calculator Tips</h3>
+                    <ul>
+                        <li>For integration: Use the <span class="key-point">∫</span> function</li>
+                        <li>Store intermediate results using <span class="key-point">STO</span> button</li>
+                        <li>Use <span class="key-point">CALC</span> to evaluate at specific points</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Section 9 -->
+            <div class="section" id="section9">
+                <h2>9. Bernoulli's Equations</h2>
+                
+                <div class="definition">
+                    <p>A <span class="key-point">Bernoulli equation</span> has the form:</p>
+                    <div class="formula">
+                        \[ \frac{dy}{dx} + P(x)y = Q(x)y^n \]
+                    </div>
+                </div>
+                
+                <h3>Solution Method</h3>
+                <p>Substitute \( v = y^{1-n} \) to transform into a linear equation.</p>
+                
+                <div class="example">
+                    <h3>Example</h3>
+                    <p>Solve \( \frac{dy}{dx} + xy = xy^2 \)</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Substitute \( v = y^{-1} \), then \( \frac{dv}{dx} - xv = -x \)</p>
+                    <p>This is now a linear equation that can be solved using an integrating factor.</p>
+                </div>
+            </div>
+            
+            <!-- Section 10 -->
+            <div class="section" id="section10">
+                <h2>10. Orthogonal Trajectories</h2>
+                
+                <div class="definition">
+                    <p><span class="key-point">Orthogonal trajectories</span> are curves that intersect each curve of a given family at right angles.</p>
+                </div>
+                
+                <h3>Finding Orthogonal Trajectories</h3>
+                <ol>
+                    <li>Find the differential equation of the given family</li>
+                    <li>Replace \( \frac{dy}{dx} \) with \( -\frac{dx}{dy} \)</li>
+                    <li>Solve the new differential equation</li>
+                </ol>
+                
+                <div class="example">
+                    <h3>Example</h3>
+                    <p>Find orthogonal trajectories of \( x^2 + y^2 = c^2 \)</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Differential equation: \( x + y\frac{dy}{dx} = 0 \)</p>
+                    <p>For orthogonal trajectories: \( x - y\frac{dx}{dy} = 0 \)</p>
+                    <p>Solution: \( y = kx \)</p>
+                </div>
+            </div>
+            
+            <!-- Section 11 -->
+            <div class="section" id="section11">
+                <h2>11. Growth and Decay</h2>
+                
+                <h3>Exponential Growth/Decay</h3>
+                <div class="formula">
+                    \[ \frac{dy}{dt} = ky \quad \Rightarrow \quad y = y_0 e^{kt} \]
+                </div>
+                
+                <h3>Logistic Growth (Verhulst's Model)</h3>
+                <div class="formula">
+                    \[ \frac{dP}{dt} = rP\left(1 - \frac{P}{K}\right) \]
+                </div>
+                <p>where P is population, r is growth rate, and K is carrying capacity.</p>
+                
+                <div class="example">
+                    <h3>Example: Population Growth</h3>
+                    <p>A population doubles in 5 years. How long to triple?</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>\( P(t) = P_0 2^{t/5} \), solve \( 3 = 2^{t/5} \) for t</p>
+                    <p>\( t = \frac{5 \ln 3}{\ln 2} \approx 7.92 \) years</p>
+                </div>
+                
+                <div class="calculator-tip">
+                    <h3>Canon F-789SGA Calculator Tips</h3>
+                    <ul>
+                        <li>For logarithmic calculations: Use <span class="key-point">ln</span> button</li>
+                        <li>For exponential calculations: Use <span class="key-point">e^x</span> button</li>
+                        <li>For solving equations: Use <span class="key-point">SOLVE</span> function</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Section 12 -->
+            <div class="section" id="section12">
+                <h2>12. Newton's Law of Cooling</h2>
+                
+                <div class="formula">
+                    \[ \frac{dT}{dt} = -k(T - T_m), \quad k > 0 \]
+                </div>
+                <p>where T is temperature of the body, T_m is ambient temperature.</p>
+                
+                <div class="example">
+                    <h3>Example</h3>
+                    <p>A metal bar at 100°F is placed in a room at 0°F. After 20 minutes, temperature is 50°F. Find time to reach 25°F.</p>
+                    <p><strong>Solution:</strong> Solve the differential equation with given conditions.</p>
+                </div>
+            </div>
+            
+            <!-- Section 13 -->
+            <div class="section" id="section13">
+                <h2>13. Investment Problems</h2>
+                
+                <h3>Continuously Compounded Interest</h3>
+                <div class="formula">
+                    \[ y = y_0 e^{kt} \]
+                </div>
+                <p>where y_0 is initial investment, k is interest rate, and t is time.</p>
+                
+                <div class="example">
+                    <h3>Example</h3>
+                    <p>$20,000 invested at 5% compounded continuously. Find amount after 3 years.</p>
+                    <p><strong>Solution:</strong> \( y = 20000e^{0.05 \times 3} \approx $23,236.68 \)</p>
+                </div>
+                
+                <div class="calculator-tip">
+                    <h3>Canon F-789SGA Calculator Tips</h3>
+                    <ul>
+                        <li>For exponential calculations: Use the <span class="key-point">e^x</span> button</li>
+                        <li>For continuous compounding: Use formula \( A = Pe^{rt} \)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Section 14 -->
+            <div class="section" id="section14">
+                <h2>14. Mixture Problems</h2>
+                
+                <div class="formula">
+                    \[ \frac{dS}{dt} = r_{in}S_{in} - r_{out}S_{out} \]
+                </div>
+                <p>where S(t) is amount of substance at time t, r_in and r_out are flow rates, S_in and S_out are concentrations.</p>
+                
+                <div class="example">
+                    <h3>Example</h3>
+                    <p>A tank contains 200L of fluid with 30g of salt. Brine with 1g/L salt is pumped in at 4L/min; well-mixed solution pumped out at same rate. Find salt amount at time t.</p>
+                </div>
+            </div>
+            
+            <!-- Section 15 -->
+            <div class="section" id="section15">
+                <h2>15. Newton's Second Law of Motion</h2>
+                
+                <div class="formula">
+                    \[ m\frac{dv}{dt} = mg - \gamma v \]
+                </div>
+                <p>where m is mass, g is gravity, γ is air resistance coefficient, and v is velocity.</p>
+                
+                <div class="example">
+                    <h3>Example</h3>
+                    <p>A body of mass 5 slugs dropped from 100 ft with zero velocity. No air resistance. Find velocity and position at any time t, and time to reach ground.</p>
+                </div>
+            </div>
+            
+            <!-- Section 16 -->
+            <div class="section" id="section16">
+                <h2>16. Simple Circuit Problems</h2>
+                
+                <h3>RL Circuit</h3>
+                <div class="formula">
+                    \[ L\frac{dI}{dt} + RI = E \]
+                </div>
+                
+                <h3>RC Circuit</h3>
+                <div class="formula">
+                    \[ \frac{dq}{dt} + \frac{1}{RC} q = \frac{E}{R} \]
+                </div>
+                
+                <div class="example">
+                    <h3>Example: RL Circuit</h3>
+                    <p>An RL circuit has E=5V, R=50Ω, L=1H, no initial current. Find current at any time t.</p>
+                    <p><strong>Solution:</strong> Solve \( \frac{dI}{dt} + 50I = 5 \) with I(0)=0.</p>
+                </div>
+                
+                <div class="calculator-tip">
+                    <h3>Canon F-789SGA Calculator Tips</h3>
+                    <ul>
+                        <li>For solving first order linear DEs: Use separation of variables or integrating factor method</li>
+                        <li>Store constants using <span class="key-point">STO</span> button</li>
+                        <li>Use <span class="key-point">CALC</span> function to evaluate expressions at specific points</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Section 17 -->
+            <div class="section" id="section17">
+                <h2>17. Variation of Parameters</h2>
+                
+                <div class="definition">
+                    <h3>Method for Second Order LDEs</h3>
+                    <p>For \( y'' + p_1(x)y' + p_0y = q(x) \) with complementary solution \( y_c = c_1y_1 + c_2y_2 \):</p>
+                    <div class="formula">
+                        \[ y_p(x) = -y_1 \int \frac{y_2(x)q(x)}{W(y_1, y_2)(x)} dx + y_2 \int \frac{y_1(x)q(x)}{W(y_1, y_2)} dx \]
+                    </div>
+                    <p>where W is the Wronskian: \( W(y_1, y_2) = y_1y_2' - y_2y_1' \)</p>
+                </div>
+                
+                <div class="calculator-tip">
+                    <h3>Canon F-789SGA Calculator Tips</h3>
+                    <ul>
+                        <li>For determinants: Use matrix functions <span class="key-point">MODE</span> → <span class="key-point">MAT</span></li>
+                        <li>For integration: Use the <span class="key-point">∫</span> function</li>
+                        <li>Store intermediate results using <span class="key-point">STO</span> button</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Section 18 -->
+            <div class="section" id="section18">
+                <h2>18. Homogeneous Linear Differential Equations with Constant Coefficients</h2>
+                
+                <div class="definition">
+                    <p>An nth-order linear differential equation with constant coefficients has the form:</p>
+                    <div class="formula">
+                        \[ a_ny^{(n)} + a_{n-1}y^{(n-1)} + ... + a_1y' + a_0y = 0 \]
+                    </div>
+                </div>
+                
+                <h3>Solutions Based on Roots of Characteristic Equation</h3>
+                <p>For \( ay'' + by' + cy = 0 \), the characteristic equation is \( a\lambda^2 + b\lambda + c = 0 \).</p>
+                
+                <table>
+                    <tr>
+                        <th>Case</th>
+                        <th>Roots</th>
+                        <th>General Solution</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Real and distinct: \( \lambda_1, \lambda_2 \)</td>
+                        <td>\( y = c_1 e^{\lambda_1 x} + c_2 e^{\lambda_2 x} \)</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Real and equal: \( \lambda_0 \)</td>
+                        <td>\( y = c_1 e^{\lambda_0 x} + c_2 x e^{\lambda_0 x} \)</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Complex conjugates: \( \lambda_0 \pm i\theta \)</td>
+                        <td>\( y = e^{\lambda_0 x}(c_1 \cos \theta x + c_2 \sin \theta x) \)</td>
+                    </tr>
+                </table>
+                
+                <div class="example">
+                    <h3>Example</h3>
+                    <p>Find general solution to \( y'' + 9y' + 8y = 0 \)</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Characteristic equation: \( \lambda^2 + 9\lambda + 8 = 0 \)</p>
+                    <p>Roots: \( \lambda = -1, -8 \)</p>
+                    <p>General solution: \( y = c_1e^{-x} + c_2e^{-8x} \)</p>
+                </div>
+                
+                <div class="calculator-tip">
+                    <h3>Canon F-789SGA Calculator Tips</h3>
+                    <ul>
+                        <li>For quadratic equations: Use <span class="key-point">MODE</span> → <span class="key-point">EQN</span> → <span class="key-point">2</span> (for degree 2)</li>
+                        <li>For complex roots: Results will show as complex numbers</li>
+                        <li>For higher degree equations: Use <span class="key-point">MODE</span> → <span class="key-point">EQN</span> → <span class="key-point">3</span> or <span class="key-point">4</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Section 19 -->
+            <div class="section" id="section19">
+                <h2>19. Laplace Transforms</h2>
+                
+                <div class="definition">
+                    <h3>Definition</h3>
+                    <p>The Laplace transform of \( f(x) \), denoted \( L\{f(x)\} \) or \( F(s) \), is:</p>
+                    <div class="formula">
+                        \[ L\{f(x)\} = F(s) = \int_{0}^{\infty} e^{-sx}f(x)dx \]
+                    </div>
+                    <p>for all values of s for which the improper integral converges.</p>
+                </div>
+                
+                <div class="definition">
+                    <h3>Linearity Property</h3>
+                    <div class="formula">
+                        \[ L\{c_1f(x) + c_2g(x)\} = c_1L\{f(x)\} + c_2L\{g(x)\} \]
+                    </div>
+                </div>
+                
+                <h3>Common Laplace Transforms</h3>
+                <table>
+                    <tr>
+                        <th>Function</th>
+                        <th>Laplace Transform</th>
+                    </tr>
+                    <tr>
+                        <td>\( 1 \)</td>
+                        <td>\( \frac{1}{s} \)</td>
+                    </tr>
+                    <tr>
+                        <td>\( x \)</td>
+                        <td>\( \frac{1}{s^2} \)</td>
+                    </tr>
+                    <tr>
+                        <td>\( x^n \)</td>
+                        <td>\( \frac{n!}{s^{n+1}} \)</td>
+                    </tr>
+                    <tr>
+                        <td>\( e^{\alpha x} \)</td>
+                        <td>\( \frac{1}{s - \alpha} \)</td>
+                    </tr>
+                    <tr>
+                        <td>\( \sin(\alpha x) \)</td>
+                        <td>\( \frac{\alpha}{s^2 + \alpha^2} \)</td>
+                    </tr>
+                    <tr>
+                        <td>\( \cos(\alpha x) \)</td>
+                        <td>\( \frac{s}{s^2 + \alpha^2} \)</td>
+                    </tr>
+                </table>
+                
+                <div class="calculator-tip">
+                    <h3>Canon F-789SGA Calculator Tips for Laplace Transforms</h3>
+                    <ul>
+                        <li>For evaluating integrals: Use the <span class="key-point">∫</span> function</li>
+                        <li>For exponential functions: Use the <span class="key-point">e^x</span> button</li>
+                        <li>For factorial calculations: Use the <span class="key-point">x!</span> function</li>
+                        <li>For trigonometric functions: Use <span class="key-point">sin</span>, <span class="key-point">cos</span> buttons</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="important">
+                <h2>General Calculator Tips for Canon F-789SGA</h2>
+                <ul>
+                    <li>Use <span class="key-point">MODE</span> to switch between calculation modes (COMP, STAT, TABLE, etc.)</li>
+                    <li>For equation solving: Use <span class="key-point">MODE</span> → <span class="key-point">EQN</span></li>
+                    <li>For matrix operations: Use <span class="key-point">MODE</span> → <span class="key-point">MAT</span></li>
+                    <li>Store values: Use <span class="key-point">STO</span> button</li>
+                    <li>Recall values: Use <span class="key-point">RCL</span> button</li>
+                    <li>For integration: Use the <span class="key-point">∫</span> function</li>
+                    <li>For differentiation: Use the <span class="key-point">d/dx</span> function</li>
+                    <li>Use parentheses <span class="key-point">( )</span> to ensure correct order of operations</li>
+                    <li>For complex calculations, break them into smaller steps and store intermediate results</li>
+                </ul>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="scrollToTop()">Back to Top</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Differential Equations Final Exam Reviewer &copy; 2023</p>
+        </footer>
+    </div>
+    
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
